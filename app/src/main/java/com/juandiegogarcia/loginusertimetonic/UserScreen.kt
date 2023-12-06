@@ -33,12 +33,15 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.runBlocking
 
 @Composable
 fun UserScreen(){
     val emailValue = rememberSaveable{ mutableStateOf("") }
     val passwordValue = rememberSaveable{ mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
+    var sessionKey by rememberSaveable { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
     val name = remember {
         mutableStateOf("")
@@ -76,7 +79,6 @@ fun UserScreen(){
             keyboardActions = KeyboardActions(
                 onDone = {
                     focusManager.clearFocus()
-
                     //TODO("LOGIN")
                 }
             ),
@@ -110,9 +112,14 @@ fun UserScreen(){
             style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.End
         )
-        
+
         Button(onClick = {
-            /*TODO*/
+            val session = runBlocking {
+                val sessionResponse = loginApp(emailValue.value, passwordValue.value)
+                return@runBlocking sessionResponse
+            }
+            sessionKey = session?.sesskey.toString()
+
         }) {
             Text(text = "Sign Up")
         }
