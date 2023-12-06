@@ -52,8 +52,17 @@ android {
 
 dependencies {
 
-    implementation("androidx.compose.material:material-icons-core:1.0.0")
-    implementation("androidx.compose.material:material-icons-extended:1.3.1")
+    implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.runtime)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.runtime.rxjava2)
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
 
 
     implementation(libs.core.ktx)
