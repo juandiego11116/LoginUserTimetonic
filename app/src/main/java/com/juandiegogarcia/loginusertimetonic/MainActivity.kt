@@ -34,13 +34,14 @@ fun Navigation(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "UserScreen") {
         composable("UserScreen"){
-            UserScreen {sessionKey->
-                navController.navigate("BookScreen/$sessionKey")
+            UserScreen {o_u,sessionKey->
+                navController.navigate("BookScreen/$sessionKey/$o_u")
             }
         }
-        composable(route = "BookScreen/{sessionKey}"){
+        composable(route = "BookScreen/{sessionKey}/{o_u}"){
             val sessionKey = it.arguments?.getString("sessionKey") ?: "No name"
-            BookScreen(sessionKey = sessionKey)
+            val o_u = it.arguments?.getString("o_u") ?: "No name"
+            BookScreen(o_u,sessionKey = sessionKey)
         }
 
     }
