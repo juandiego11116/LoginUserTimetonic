@@ -43,7 +43,7 @@ import kotlinx.coroutines.runBlocking
  * @param navigationToBookScreen Callback function to navigate to the BookScreen.
  */
 @Composable
-fun UserScreen(navigationToBookScreen:(String)->Unit){
+fun UserScreen(navigationToBookScreen:(String, String)->Unit){
     var emailValue = rememberSaveable{ mutableStateOf("") }
     val passwordValue = rememberSaveable{ mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
@@ -124,13 +124,14 @@ fun UserScreen(navigationToBookScreen:(String)->Unit){
         // Login button
         Button(onClick = {
             val session = runBlocking {
+
                 return@runBlocking loginApp(emailValue.value, passwordValue.value)
             }
 
-            if (session == null){
+            if (session.second == null){
                 showMessage(context, message = "Your user or password is wrong")
             }else{
-                navigationToBookScreen(session.sesskey.toString())
+                navigationToBookScreen(session.first.toString(), session.second?.sesskey.toString())
             }
         }) {
             Text(text = "Login")
