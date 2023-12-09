@@ -7,14 +7,15 @@ package com.juandiegogarcia.loginusertimetonic
  * @param password The user's password.
  * @return A [SessionModelResponse] representing the user's session, or null if authentication fails.
  */
-suspend fun loginApp(login: String, password: String): SessionModelResponse? {
+suspend fun loginApp(login: String, password: String): Pair<String?, SessionModelResponse?> {
     return try {
         val appKey = appKeyService.getAppKey().body()?.appKey ?: ""
         val oauthKey = createOauthKey(login, password, appKey)
-        createSessionKey(oauthKey.o_u, oauthKey.oauthkey)
+        val sessionResponse = createSessionKey(oauthKey.o_u, oauthKey.oauthkey)
+        Pair(oauthKey.o_u,sessionResponse)
     } catch (e: Exception) {
         e.printStackTrace()
-        null
+        Pair(null, null)
     }
 }
 
