@@ -52,6 +52,25 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.runtime)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.runtime.rxjava2)
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
+
+    implementation (libs.androidx.activity.compose.v130)
+    implementation (libs.androidx.material3)
+    implementation (libs.androidx.ui)
+    implementation ("androidx.compose.foundation:foundation:1.5.4")
+
+
+
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
@@ -60,6 +79,9 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.foundation.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
