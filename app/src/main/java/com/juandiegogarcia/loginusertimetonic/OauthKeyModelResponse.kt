@@ -1,5 +1,6 @@
 package com.juandiegogarcia.loginusertimetonic
 
+// Data class representing the response model for an OAuth key creation.
 data class OauthKeyModelResponse(
     val status: String,
     val oauthkey: String,

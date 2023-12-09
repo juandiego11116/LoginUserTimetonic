@@ -29,6 +29,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//Composable function for handling navigation within the app.
 @Composable
 fun Navigation(){
     val navController = rememberNavController()

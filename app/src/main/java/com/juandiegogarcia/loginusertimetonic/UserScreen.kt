@@ -37,6 +37,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.runBlocking
 
+/**
+ * Composable function representing the user login screen.
+ *
+ * @param navigationToBookScreen Callback function to navigate to the BookScreen.
+ */
 @Composable
 fun UserScreen(navigationToBookScreen:(String, String)->Unit){
     var emailValue = rememberSaveable{ mutableStateOf("") }
@@ -51,9 +56,11 @@ fun UserScreen(navigationToBookScreen:(String, String)->Unit){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
+        // Text instruction
         Text(text = "Enter your email and password to registered with Timetonic.", fontSize = 24.sp)
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Email input field
         OutlinedTextField(
             value = emailValue.value,
             onValueChange = {emailValue.value = it},
@@ -66,6 +73,7 @@ fun UserScreen(navigationToBookScreen:(String, String)->Unit){
             modifier = Modifier.fillMaxWidth(),
         )
 
+        // Password input field
         OutlinedTextField(
             value = passwordValue.value,
             onValueChange = { passwordValue.value = it },
@@ -113,10 +121,11 @@ fun UserScreen(navigationToBookScreen:(String, String)->Unit){
             modifier = Modifier.fillMaxWidth(),
         )
 
+        // Login button
         Button(onClick = {
             val session = runBlocking {
-                val (o_u, sessionResponse) = loginApp(emailValue.value, passwordValue.value)
-                Pair(o_u, sessionResponse)
+
+                return@runBlocking loginApp(emailValue.value, passwordValue.value)
             }
 
             if (session.second == null){
@@ -124,7 +133,6 @@ fun UserScreen(navigationToBookScreen:(String, String)->Unit){
             }else{
                 navigationToBookScreen(session.first.toString(), session.second?.sesskey.toString())
             }
-
         }) {
             Text(text = "Login")
         }
@@ -132,6 +140,7 @@ fun UserScreen(navigationToBookScreen:(String, String)->Unit){
     }
 }
 
+// Displays a toast message in the given context.
 fun showMessage(context: Context, message:String){
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
