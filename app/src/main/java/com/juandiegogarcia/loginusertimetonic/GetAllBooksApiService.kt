@@ -4,6 +4,8 @@ import kotlinx.coroutines.runBlocking
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+
+// Retrofit API service interface for fetching all books.
 interface GetAllBooksApiService {
     @GET("api.php?version=1.47&req=getAllBooks")
     suspend fun getAllBooks(
@@ -13,6 +15,13 @@ interface GetAllBooksApiService {
     ): GetAllBooksModelResponse
 }
 
+/**
+ * Suspended function to create and retrieve all books for a user session.
+ *
+ * @param o_u The user identifier.
+ * @param sessionKey The session key for the user.
+ * @return An instance of [GetAllBooksModelResponse] if successful.
+ */
 suspend fun createGetALLBooks(o_u:String, sessionKey:String): GetAllBooksModelResponse {
 
     return runBlocking {

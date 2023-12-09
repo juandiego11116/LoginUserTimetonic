@@ -1,7 +1,7 @@
 package com.juandiegogarcia.loginusertimetonic
 
 import com.google.gson.annotations.SerializedName
-
+// Data class representing the response model for an get all books.
 data class GetAllBooksModelResponse(
     @SerializedName("status") val status: String,
     @SerializedName("sstamp")val sstamp: Long,
