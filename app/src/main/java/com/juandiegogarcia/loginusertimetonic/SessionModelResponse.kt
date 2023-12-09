@@ -1,5 +1,5 @@
 package com.juandiegogarcia.loginusertimetonic
-
+// Data class representing the response model for an session key creation.
 data class SessionModelResponse(
     val status: String,
     val sesskey: String?,
