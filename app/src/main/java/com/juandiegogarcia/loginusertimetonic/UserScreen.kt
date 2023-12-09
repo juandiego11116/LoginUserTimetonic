@@ -116,10 +116,10 @@ fun UserScreen(navigationToBookScreen:(String, String)->Unit){
         Button(onClick = {
             val session = runBlocking {
                 val (o_u, sessionResponse) = loginApp(emailValue.value, passwordValue.value)
-                return@runBlocking Pair(o_u, sessionResponse)
+                Pair(o_u, sessionResponse)
             }
 
-            if (session == null){
+            if (session.second == null){
                 showMessage(context, message = "Your user or password is wrong")
             }else{
                 navigationToBookScreen(session.first.toString(), session.second?.sesskey.toString())
