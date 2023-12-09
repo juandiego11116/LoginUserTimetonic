@@ -13,8 +13,16 @@ data class GetAllBooksModelResponse(
 data class AllBooks(
     val nbBooks: Int,
     val nbContacts: Int,
-    val contacts: List<Any>,
+    val contacts: List<Contact>,
     val books: List<Book>
+)
+
+data class Contact(
+    val u_c: String,
+    val lastName: String,
+    val firstName: String,
+    val sstamp: Int,
+    val isConfirmed: Boolean
 )
 
 data class Book(
