@@ -20,6 +20,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import kotlinx.coroutines.runBlocking
 
+/**
+ * Composable function representing the user login screen.
+ *
+ * @param o_u used for call BookFetch
+ * @param sessionKey used for call BookFetch
+ */
 @Composable
 fun BookScreen(o_u:String, sessionKey:String){
 
@@ -37,6 +43,12 @@ fun BookScreen(o_u:String, sessionKey:String){
     }
 
 }
+
+/**
+ * Composable function representing a book item in the UI.
+ *
+ * @param book The Book object containing information about the book.
+ */
 @Composable
 fun BookItem(book: Book){
     Column (modifier = Modifier
