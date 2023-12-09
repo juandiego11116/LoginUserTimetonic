@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.runBlocking
 
 @Composable
-fun UserScreen(navigationToBookScreen:(String)->Unit){
+fun UserScreen(navigationToBookScreen:(String, String)->Unit){
     var emailValue = rememberSaveable{ mutableStateOf("") }
     val passwordValue = rememberSaveable{ mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
@@ -115,14 +115,14 @@ fun UserScreen(navigationToBookScreen:(String)->Unit){
 
         Button(onClick = {
             val session = runBlocking {
-                val sessionResponse = loginApp(emailValue.value, passwordValue.value)
-                return@runBlocking sessionResponse
+                val (o_u, sessionResponse) = loginApp(emailValue.value, passwordValue.value)
+                return@runBlocking Pair(o_u, sessionResponse)
             }
 
             if (session == null){
                 showMessage(context, message = "Your user or password is wrong")
             }else{
-                navigationToBookScreen(session.sesskey.toString())
+                navigationToBookScreen(session.first.toString(), session.second?.sesskey.toString())
             }
 
         }) {
